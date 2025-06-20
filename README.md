@@ -1,1 +1,2 @@
 # Recurrent-Neural-Net-Project
+This project is being completed as part of the Deep Learning course in the CU Boulder Masters of Data Science program. The goal of the project is to utilize natural language processing (NLP) methodologies in combination with a Recurrent Neural Network (RNN) to perform binary classification of tweets; tweets will be classified as either referring to a real disaster or not.
