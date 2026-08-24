@@ -1,0 +1,9 @@
+numpy
+pandas
+scipy
+scikit-learn
+matplotlib
+seaborn
+wordcloud
+tensorflow>=2.15
+keras-tuner
