@@ -1,7 +1,9 @@
 name: Portfolio restructure (one-shot)
 
 on:
-  workflow_dispatch:
+  push:
+    branches:
+      - claude/portfolio-repo-structure-sgbhhg
 
 permissions:
   contents: write
@@ -11,9 +13,19 @@ jobs:
     runs-on: ubuntu-latest
     steps:
       - uses: actions/checkout@v4
+      - name: Check whether restructure is still needed
+        id: check
+        run: |
+          if [ -f "rnn-project (1).ipynb" ]; then
+            echo "needed=true" >> "$GITHUB_OUTPUT"
+          else
+            echo "needed=false" >> "$GITHUB_OUTPUT"
+          fi
       - name: Restructure notebook and extract figures
+        if: steps.check.outputs.needed == 'true'
         run: python3 scripts/portfolio_restructure.py
       - name: Commit and push
+        if: steps.check.outputs.needed == 'true'
         run: |
           git config user.name "github-actions[bot]"
           git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
